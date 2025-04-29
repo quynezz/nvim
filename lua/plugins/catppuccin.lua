@@ -1,0 +1,31 @@
+return {
+  "catppuccin/nvim",
+  name = "catppuccin",
+  priority = 1000,
+  config = function()
+    require("catppuccin").setup({
+      flavour = "mocha",
+      background = {
+        light = "latte",
+        dark = "mocha",
+      },
+      transparent_background = true, -- Set to true if your terminal supports transparency
+      term_colors = true,
+      dim_inactive = {
+        enabled = false,
+        shade = "dark",
+        percentage = 0.15,
+      },
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        telescope = true,
+        notify = true,
+        mini = false,
+        lsp_saga = true,
+      },
+    })
+    vim.cmd("colorscheme catppuccin") -- Ensure it’s set here
+  end,
+}
