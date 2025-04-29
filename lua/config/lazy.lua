@@ -18,8 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.opt.scrolloff = 0
 vim.opt.sidescrolloff = 0
--- vim.g.lazyvim_picker = "fzf"
-vim.g.lazyvim_colorscheme = "catppuccin" -- Explicitly set catppuccin
+vim.g.lazyvim_colorscheme = "base16-black-metal" -- Use the correct colorscheme name
 
 require("lazy").setup({
   spec = {
@@ -27,20 +26,20 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
-        colorscheme = { "catppuccin" },
+        colorscheme = { "base16-black-metal" }, -- Correct colorscheme name
       },
     },
     { "goolord/alpha-nvim", enabled = false },
-    -- { "folke/tokyonight.nvim", enabled = false }, -- Disable tokyonight
-    -- { "rebelot/kanagawa.nvim", enabled = false }, -- Disable kanagawa
     { import = "plugins" },
-    { import = "plugins.catppuccin" },
+    -- Disable catppuccin to avoid conflicts
+    -- { import = "plugins.catppuccin" },
     { import = "plugins.lspsaga" },
+    { import = "plugins.black-metal" },
     { import = "plugins.disable-lightbulb" },
   },
   defaults = { lazy = false, version = false },
   install = {
-    colorscheme = {}, -- Avoid conflicts
+    colorscheme = { "base16-black-metal" }, -- Ensure LazyVim tries this during installation
   },
   checker = { enabled = true, notify = false },
   performance = {
@@ -60,15 +59,26 @@ require("lazy").setup({
   },
 })
 
--- Ensure catppuccin is applied after plugins load
-vim.api.nvim_create_autocmd("User", {
-  pattern = "LazyDone",
+-- Set initial highlights
+vim.api.nvim_set_hl(0, "Cmdline", { fg = "#D8D8D8" })
+vim.api.nvim_set_hl(0, "MsgArea", { fg = "#D8D8D8" })
+vim.api.nvim_set_hl(0, "NormalFloat", { fg = "#D8D8D8" })
+vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#D8D8D8" })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#D8D8D8" })
+
+-- Ensure the highlights persist after colorscheme changes
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
   callback = function()
-    vim.cmd("colorscheme catppuccin")
+    vim.api.nvim_set_hl(0, "Cmdline", { fg = "#D8D8D8" })
+    vim.api.nvim_set_hl(0, "MsgArea", { fg = "#D8D8D8" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { fg = "#D8D8D8" })
+    vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#D8D8D8" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#D8D8D8" })
   end,
 })
 
--- Debug colorscheme on startup
+-- Optional: Debug current colorscheme on startup
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     print("Current colorscheme: " .. (vim.g.colors_name or "none"))
