@@ -21,8 +21,8 @@ return {
           },
           win_options = {
             winhighlight = {
-              Normal = "Normal",
-              FloatBorder = "NoiceCmdlinePopupBorder",
+              Normal = "NormalFloat", -- Use NormalFloat for background consistency
+              FloatBorder = "FloatBorder", -- Use FloatBorder for border consistency
             },
           },
         },
@@ -35,5 +35,11 @@ return {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify", -- Optional for notification view
     },
+    config = function(_, opts)
+      -- Optional: Dynamically set highlights to match colorscheme
+      vim.api.nvim_set_hl(0, "NoiceCmdlinePopup", { link = "NormalFloat" })
+      vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { link = "FloatBorder" })
+      require("noice").setup(opts)
+    end,
   },
 }
