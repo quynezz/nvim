@@ -1,7 +1,7 @@
 local config = function()
   require("lualine").setup({
     options = {
-      theme = "horizon", -- Use 'auto' to match your colorscheme
+      theme = "auto", -- Use 'auto' to match your colorscheme
       globalstatus = true,
     },
     sections = {
