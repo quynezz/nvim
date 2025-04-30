@@ -3,7 +3,6 @@ return {
   name = "black-metal",
   priority = 1000,
   config = function()
-    -- Ensure the colorscheme is applied
     vim.cmd("colorscheme base16-black-metal")
   end,
 }
