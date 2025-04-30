@@ -1,9 +1,9 @@
 return {
-  "snacks.nvim",
+  "folke/snacks.nvim",
   opts = {
-    scroll = { enabled = false },
     dashboard = {
       preset = {
+        -- Keep your custom ASCII art as the header
         header = [[
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡄⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⢀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠢⡀⠀⠀⠀⢹⠀⠀⠀⠀⠸⡀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⢸⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠀⠀⠀⡆⠀⠀⠀⢸⠀⠀⠀⠀⡠⠊⠀⠀⠀⠀⠀⠀
@@ -28,6 +28,17 @@ return {
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⣾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ]],
+        keys = {}, -- Disable all keys as before
+      },
+      sections = {
+        { section = "header" }, -- Display the ASCII art header
+        { section = "startup", gap = 1 }, -- Show plugin load stats (e.g., "Neovim loaded 30/56 plugins in 132.33ms")
+        {
+          text = {
+            { "Welcome Quynezz! Shut up and code", align = "center", hl = "SnacksDashboardDesc" },
+          },
+          gap = 1,
+        }, -- Add a welcome text below the startup section
       },
     },
   },
