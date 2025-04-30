@@ -13,7 +13,7 @@ return {
           -- Set LineNr to pale white with no background
           vim.api.nvim_set_hl(0, "LineNr", { fg = "#C1C0C0", bg = nil })
           -- Set CursorLineNr to the same pale white with no background
-          vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#fbcb97", bg = nil, bold = true })
+          vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#5f8787", bg = nil, bold = true })
           -- Ensure CursorLine has no background (affects the entire line, not just the number)
           vim.api.nvim_set_hl(0, "CursorLine", { bg = nil })
         end,
@@ -33,7 +33,7 @@ return {
       pattern = "*",
       callback = function()
         vim.api.nvim_set_hl(0, "LineNr", { fg = "#C1C0C0", bg = nil })
-        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#fbcb97", bg = nil, bold = true })
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#5f8787", bg = nil, bold = true })
         vim.api.nvim_set_hl(0, "CursorLine", { bg = nil })
       end,
     })
