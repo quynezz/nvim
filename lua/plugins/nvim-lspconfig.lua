@@ -1,9 +1,28 @@
 local on_attach = require("util.lsp").on_attach
--- local diagnostic_signs = require("util.icons").diagnostic_signs
 local typescript_organise_imports = require("util.lsp").typescript_organise_imports
 
 local config = function()
   require("neoconf").setup({})
+  require("mason").setup()
+  require("mason-lspconfig").setup({
+    ensure_installed = {
+      "gopls",
+      "solidity_ls",
+      "lua_ls",
+      "jsonls",
+      "pyright",
+      "ts_ls",
+      "bashls",
+      "html",
+      "cssls",
+      "volar",
+      "dockerls",
+      "clangd",
+      "efm",
+    },
+    automatic_installation = true,
+  })
+
   local cmp_nvim_lsp = require("cmp_nvim_lsp")
   local lspconfig = require("lspconfig")
   local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -12,8 +31,8 @@ local config = function()
   local diagnostic_icons = {
     [vim.diagnostic.severity.ERROR] = " ",
     [vim.diagnostic.severity.WARN] = " ",
-    [vim.diagnostic.severity.HINT] = "",
-    [vim.diagnostic.severity.INFO] = "",
+    [vim.diagnostic.severity.HINT] = " ",
+    [vim.diagnostic.severity.INFO] = " ",
   }
 
   -- Enable inline diagnostics globally
@@ -21,7 +40,7 @@ local config = function()
     virtual_text = {
       prefix = function(diagnostic)
         local icon = diagnostic_icons[diagnostic.severity] or "●"
-        return icon -- Add an extra space after the icon
+        return icon .. " " -- Add an extra space after the icon
       end,
       source = false,
       spacing = 1,
@@ -53,8 +72,8 @@ local config = function()
         name = "solidity_ls",
         includePath = "",
         remappings = {
-          ["@openzeppelin/"] = "lib/openzeppelin-contracts/",
-          ["account-abstraction/"] = "lib/account-abstraction/",
+          ["@openzeppelin/"] = "lib=openzeppelin-contracts/",
+          ["account-abstraction/"] = "lib=account-abstraction/",
         },
       },
     },
@@ -126,7 +145,7 @@ local config = function()
       "typescriptreact",
       "javascriptreact",
     },
-    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git") or vim.fn.getcwd(),
     commands = {
       TypeScriptOrganizeImports = typescript_organise_imports,
     },
@@ -171,24 +190,42 @@ local config = function()
     root_dir = lspconfig.util.root_pattern(".git"),
   })
 
-  -- HTML/CSS/JS/TS (Emmet)
-  lspconfig.emmet_ls.setup({
+  -- HTML
+  lspconfig.html.setup({
     capabilities = capabilities,
-    on_attach = on_attach,
-    filetypes = {
-      -- "typescriptreact",
-      -- "javascriptreact",
-      -- "javascript",
-      -- "typescript",
-      "css",
-      "sass",
-      "scss",
-      "less",
-      "svelte",
-      "vue",
-      "html",
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      vim.notify("HTML LSP attached", vim.log.levels.INFO)
+    end,
+    filetypes = { "html" },
+    root_dir = lspconfig.util.root_pattern("package.json", ".git") or vim.fn.getcwd(),
+  })
+
+  -- CSS
+  lspconfig.cssls.setup({
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      vim.notify("CSS LSP attached", vim.log.levels.INFO)
+    end,
+    filetypes = { "css", "scss", "less" },
+    root_dir = lspconfig.util.root_pattern("package.json", ".git") or vim.fn.getcwd(),
+  })
+
+  -- Vue
+  lspconfig.volar.setup({
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      vim.notify("Volar LSP attached", vim.log.levels.INFO)
+    end,
+    filetypes = { "vue" },
+    root_dir = lspconfig.util.root_pattern("package.json", ".git") or vim.fn.getcwd(),
+    init_options = {
+      typescript = {
+        tsdk = vim.fn.expand("~/.npm-global/lib/node_modules/typescript/lib"),
+      },
     },
-    root_dir = lspconfig.util.root_pattern("package.json", ".git"),
   })
 
   -- Docker
@@ -223,7 +260,8 @@ local config = function()
   local shellcheck = require("efmls-configs.linters.shellcheck")
   local shfmt = require("efmls-configs.formatters.shfmt")
   local hadolint = require("efmls-configs.linters.hadolint")
-  -- local cpplint = Guynezzrequire("efmls-configs.linters.cpplint")
+  local stylelint = require("efmls-configs.linters.stylelint")
+  local cpplint = require("efmls-configs.linters.cpplint")
   local clangformat = require("efmls-configs.formatters.clang_format")
 
   -- Configure EFM server
@@ -249,7 +287,7 @@ local config = function()
       "cpp",
       "go",
     },
-    root_dir = lspconfig.util.root_pattern(".git", "package.json", "tsconfig.json", "jsconfig.json"),
+    root_dir = lspconfig.util.root_pattern(".git", "package.json", "tsconfig.json", "jsconfig.json") or vim.fn.getcwd(),
     init_options = {
       documentFormatting = true,
       documentRangeFormatting = true,
@@ -276,12 +314,16 @@ local config = function()
         markdown = { prettier_d },
         docker = { hadolint, prettier_d },
         html = { prettier_d },
-        css = { prettier_d },
+        css = { stylelint, prettier_d },
         c = { clangformat, cpplint },
         cpp = { clangformat, cpplint },
         go = { gofumpt, go_revive },
       },
     },
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      vim.notify("EFM LSP attached for filetype: " .. vim.bo.filetype, vim.log.levels.INFO)
+    end,
   })
 end
 
