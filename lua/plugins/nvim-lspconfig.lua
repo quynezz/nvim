@@ -13,7 +13,7 @@ local config = function()
       "pyright",
       "ts_ls",
       "bashls",
-      "html",
+      "html-lsp",
       "cssls",
       "volar",
       "dockerls",
@@ -135,6 +135,10 @@ local config = function()
     },
   })
 
+  local mason_registry = require("mason-registry")
+  local vue_language_server = mason_registry.get_package("vue-language-server"):get_install_path()
+    .. "/node_modules/@vue/language-server"
+
   -- TypeScript/JavaScript
   lspconfig.ts_ls.setup({
     on_attach = on_attach,
@@ -144,6 +148,7 @@ local config = function()
       "javascript",
       "typescriptreact",
       "javascriptreact",
+      "vue",
     },
     root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git") or vim.fn.getcwd(),
     commands = {
@@ -178,6 +183,15 @@ local config = function()
       },
       diagnostics = {
         ignoredCodes = { 1100 },
+      },
+    },
+    init_options = {
+      plugins = {
+        {
+          name = "@vue/typescript-plugin",
+          location = vue_language_server,
+          languages = { "vue" },
+        },
       },
     },
   })
@@ -224,6 +238,17 @@ local config = function()
     init_options = {
       typescript = {
         tsdk = vim.fn.expand("~/.npm-global/lib/node_modules/typescript/lib"),
+      },
+      languageFeatures = {
+        diagnostics = true,
+        documentFormatting = true,
+        documentRangeFormatting = true,
+        hover = true,
+        documentSymbol = true,
+        codeAction = true,
+        completion = true,
+        references = true,
+        definition = true,
       },
     },
   })
