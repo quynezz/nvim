@@ -62,25 +62,3 @@ require("lazy").setup({
 -- Set initial highlights
 vim.api.nvim_set_hl(0, "Cmdline", { fg = "#D8D8D8" })
 vim.api.nvim_set_hl(0, "MsgArea", { fg = "#D8D8D8" })
-vim.api.nvim_set_hl(0, "NormalFloat", { fg = "#D8D8D8" })
-vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#D8D8D8" })
-vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#D8D8D8" })
-
--- Ensure the highlights persist after colorscheme changes
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-    vim.api.nvim_set_hl(0, "Cmdline", { fg = "#D8D8D8" })
-    vim.api.nvim_set_hl(0, "MsgArea", { fg = "#D8D8D8" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { fg = "#D8D8D8" })
-    vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#D8D8D8" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#D8D8D8" })
-  end,
-})
-
--- Optional: Debug current colorscheme on startup
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    print("Current colorscheme: " .. (vim.g.colors_name or "none"))
-  end,
-})
