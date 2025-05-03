@@ -18,7 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.opt.scrolloff = 0
 vim.opt.sidescrolloff = 0
-vim.g.lazyvim_colorscheme = "base16-black-metal" -- Use the correct colorscheme name
+vim.g.lazyvim_colorscheme = "catppuccin" -- Use the correct colorscheme name
 
 require("lazy").setup({
   spec = {
@@ -26,20 +26,20 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
-        colorscheme = { "base16-black-metal" }, -- Correct colorscheme name
+        colorscheme = { "catppuccin" }, -- Correct colorscheme name
       },
     },
     { "goolord/alpha-nvim", enabled = false },
     { import = "plugins" },
     -- Disable catppuccin to avoid conflicts
-    -- { import = "plugins.catppuccin" },
+    { import = "plugins.catppuccin" },
     { import = "plugins.lspsaga" },
-    { import = "plugins.black-metal" },
+    -- { import = "plugins.black-metal" },
     { import = "plugins.disable-lightbulb" },
   },
   defaults = { lazy = false, version = false },
   install = {
-    colorscheme = { "base16-black-metal" }, -- Ensure LazyVim tries this during installation
+    colorscheme = { "catppuccin" }, -- Ensure LazyVim tries this during installation
   },
   checker = { enabled = true, notify = false },
   performance = {

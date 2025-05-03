@@ -1,4 +1,6 @@
 -- ~/.config/nvim/lua/plugins/mason-lspconfig.lua
+
+-- Mason: Package manager for LSPs, linters, and formatters
 local mason = {
   "williamboman/mason.nvim",
   cmd = "Mason",
@@ -11,17 +13,21 @@ local mason = {
         package_uninstalled = "✗",
       },
     },
+    log_level = vim.log.levels.DEBUG, -- Enable debug logging
   },
 }
 
+-- Mason-LSPConfig: Bridges Mason and nvim-lspconfig
 local mason_lspconfig = {
   "williamboman/mason-lspconfig.nvim",
+  event = "BufReadPre",
+  dependencies = { "williamboman/mason.nvim" },
   opts = {
     ensure_installed = {
       "solidity_ls",
       "efm",
       "bashls",
-      "tsserver", -- ts_ls
+      "tsserver",
       "tailwindcss",
       "pyright",
       "lua_ls",
@@ -30,38 +36,41 @@ local mason_lspconfig = {
       "clangd",
       "dockerls",
       "gopls",
+      "html",
+      "cssls",
+      "volar",
     },
     automatic_installation = true,
   },
-  event = "BufReadPre",
-  dependencies = { "williamboman/mason.nvim" },
 }
 
+-- Mason-Tool-Installer: Installs linters and formatters
 local mason_tool_installer = {
   "WhoIsSethDaniel/mason-tool-installer.nvim",
+  event = "BufReadPre",
+  dependencies = { "williamboman/mason.nvim" },
   opts = {
     ensure_installed = {
-      "eslint_d", -- ESLint for JavaScript/TypeScript linting
-      "prettierd", -- Prettier for formatting
-      "luacheck", -- Lua linter
-      "stylua", -- Lua formatter
-      "flake8", -- Python linter
-      "black", -- Python formatter
-      "shellcheck", -- Shell script linter
-      "shfmt", -- Shell script formatter
-      "hadolint", -- Docker linter
-      "cpplint", -- C/C++ linter
-      "clang-format", -- C/C++ formatter
-      "gofumpt", -- Go formatter
-      "go_revive", -- Go linter
-      "solhint", -- Solidity linter
-      "fixjson", -- JSON formatter
+      "eslint_d",
+      "prettierd",
+      "luacheck",
+      "stylua",
+      "flake8",
+      "black",
+      "shellcheck",
+      "shfmt",
+      "hadolint",
+      "cpplint",
+      "clang-format",
+      "gofumpt",
+      "go_revive",
+      "solhint",
+      "fixjson",
+      "stylelint",
     },
     auto_update = true,
     run_on_start = true,
   },
-  event = "BufReadPre",
-  dependencies = { "williamboman/mason.nvim" },
 }
 
 return {

@@ -13,7 +13,7 @@ local config = function()
       "pyright",
       "ts_ls",
       "bashls",
-      "html-lsp",
+      "html",
       "cssls",
       "volar",
       "dockerls",
@@ -35,22 +35,31 @@ local config = function()
     [vim.diagnostic.severity.INFO] = " ",
   }
 
-  -- Enable inline diagnostics globally
+  -- Configure diagnostics
   vim.diagnostic.config({
     virtual_text = {
       prefix = function(diagnostic)
-        local icon = diagnostic_icons[diagnostic.severity] or "●"
-        return icon .. " " -- Add an extra space after the icon
+        return diagnostic_icons[diagnostic.severity] or "● "
       end,
       source = false,
       spacing = 1,
+      format = function(diagnostic)
+        return diagnostic.message
+      end,
     },
-    signs = false, -- Already disabled, sign column disabled globally in init.lua
+    signs = true,
     update_in_insert = false,
     severity_sort = true,
     float = {
       border = "rounded",
       source = "always",
+      focusable = false,
+      header = "",
+      prefix = "",
+      format = function(diagnostic)
+        return string.format("%s (%s)", diagnostic.message, diagnostic.code or "unknown")
+      end,
+      severity = { min = vim.diagnostic.severity.ERROR }, -- Show only errors in float
     },
   })
 
@@ -233,7 +242,7 @@ local config = function()
       on_attach(client, bufnr)
       vim.notify("Volar LSP attached", vim.log.levels.INFO)
     end,
-    filetypes = { "vue" },
+    filetypes = { "vue", "html" },
     root_dir = lspconfig.util.root_pattern("package.json", ".git") or vim.fn.getcwd(),
     init_options = {
       typescript = {

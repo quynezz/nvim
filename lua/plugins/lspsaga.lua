@@ -45,7 +45,6 @@ return {
         default = "def+ref+imp",
       },
     })
-    vim.notify("Welcome Back, Quynezz!", vim.log.levels.INFO)
   end,
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
