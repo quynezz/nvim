@@ -20,3 +20,9 @@ keymap.set("v", ">", ">gv")
 --Comment
 vim.api.nvim_set_keymap("n", "<C-_>", "gcc", { noremap = false })
 vim.api.nvim_set_keymap("v", "<C-_>", "gcc", { noremap = false })
+
+-- Define :FormatCode command
+vim.api.nvim_create_user_command("FormatCode", function()
+  vim.cmd("normal! gggqG``") -- Execute gggqG`` in normal mode
+  vim.notify("      Done Formatting!    ")
+end, { desc = "Format entire file and return cursor to previous position" })

@@ -3,7 +3,6 @@ return {
   opts = {
     dashboard = {
       preset = {
-        -- Keep your custom ASCII art as the header
         header = [[
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡄⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⢀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
         ⠀⠀⠀⠀⠀⠀⠢⡀⠀⠀⠀⢹⠀⠀⠀⠀⠸⡀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⢸⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠀⠀⠀⡆⠀⠀⠀⢸⠀⠀⠀⠀⡠⠊⠀⠀⠀⠀⠀⠀
@@ -28,18 +27,32 @@ return {
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⣾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
         ]],
-        keys = {}, -- Disable all keys as before,
+        keys = {}, -- Disable all keys as before
       },
       sections = {
-        { section = "header" }, -- Display the ASCII art header
-        { section = "startup", gap = 1 }, -- Show plugin load stats (e.g., "Neovim loaded 30/56 plugins in 132.33ms"),
+        {
+          section = "header",
+          hl = "SnacksHeaderBase16", -- Assign custom highlight group for the header
+        },
+        { section = "startup", gap = 1 }, -- Show plugin load stats
         {
           text = {
             -- { "Welcome Quynezz!", align = "center", hl = "SnacksDashboardDesc" },
           },
           gap = 1,
-        }, -- Add a welcome text below the startup section
+        },
       },
     },
   },
+  config = function(_, opts)
+    -- Define the Base16-themed highlight group for the header
+    vim.api.nvim_set_hl(0, "SnacksHeaderBase16", {
+      fg = "#d8d8d8", -- base05 (light foreground for text)
+      bg = "#181818", -- base00 (dark background)
+      bold = true, -- Optional: make the text bold
+    })
+
+    -- Set up snacks.nvim with the provided options
+    require("snacks").setup(opts)
+  end,
 }
