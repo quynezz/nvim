@@ -1,6 +1,5 @@
 local on_attach = require("util.lsp").on_attach
 local typescript_organise_imports = require("util.lsp").typescript_organise_imports
-
 local config = function()
   require("neoconf").setup({})
   require("mason").setup()
