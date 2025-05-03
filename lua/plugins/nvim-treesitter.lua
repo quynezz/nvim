@@ -29,7 +29,7 @@ local config = function()
     },
   })
 end
-
+--
 return {
   "nvim-treesitter/nvim-treesitter",
   lazy = false,
