@@ -3,6 +3,7 @@ return {
   name = "black-metal",
   priority = 1000,
   config = function()
+    -- base16-black-metal-scheme
     vim.cmd("colorscheme base16-black-metal")
 
     -- Set transparent background for key highlight groups
