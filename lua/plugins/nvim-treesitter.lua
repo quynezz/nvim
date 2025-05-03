@@ -6,7 +6,7 @@ local config = function()
     autotag = {
       enable = true,
     },
-    --
+
     ensure_installed = {
       "markdown",
       "json",
