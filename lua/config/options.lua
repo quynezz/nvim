@@ -6,4 +6,5 @@
 --
 -- In ~/.config/nvim/lua/config/options.lua or a similar file
 
+-- Removing the trailing space "--"
 vim.opt.list = false
