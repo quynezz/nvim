@@ -5,3 +5,5 @@
 --
 --
 -- In ~/.config/nvim/lua/config/options.lua or a similar file
+
+vim.opt.list = false

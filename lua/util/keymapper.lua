@@ -43,7 +43,6 @@ local mapkey = function(keymaps, command, vimmode, options)
   local opts = get_opts(options)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
-
 vim.keymap.set("n", "<leader>O", function()
   if vim.bo.filetype == "cpp" then
     vim.cmd("write")

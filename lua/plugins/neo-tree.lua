@@ -30,10 +30,8 @@ return {
     vim.api.nvim_set_hl(0, "NeoTreePrompt", { fg = "#FFFFFF", bg = nil })
     vim.api.nvim_set_hl(0, "NeoTreeFloatNormal", { fg = "#FFFFFF", bg = nil })
     vim.api.nvim_set_hl(0, "NeoTreeNormal", { fg = "#FFFFFF", bg = nil })
-    vim.api.nvim_set_hl(0, "NormalFloat", { fg = "#FFFFFF", bg = nil })
-    -- vim.api.nvim_set_hl(0, "Normal", { fg = "#FFFFFF", bg = nil })
     -- Set the breadcrumb background to transparent
-    vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = "#5f8787", bg = nil })
+    vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = "#E5E5E5", bg = "#638f81" })
     vim.api.nvim_set_hl(0, "NeoTreeStatusLine", { fg = "#5f8787", bg = nil })
 
     -- Ensure the highlights persist after colorscheme changes
@@ -47,10 +45,8 @@ return {
         vim.api.nvim_set_hl(0, "NeoTreePrompt", { fg = "#FFFFFF", bg = nil })
         vim.api.nvim_set_hl(0, "NeoTreeFloatNormal", { fg = "#FFFFFF", bg = nil })
         vim.api.nvim_set_hl(0, "NeoTreeNormal", { fg = "#FFFFFF", bg = nil })
-        vim.api.nvim_set_hl(0, "NormalFloat", { fg = "#FFFFFF", bg = nil })
-        -- vim.api.nvim_set_hl(0, "Normal", { fg = "#FFFFFF", bg = nil })
         -- Reapply the breadcrumb background transparency
-        vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = "#5f8787", bg = nil })
+        vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = "#E5E5E5", bg = "#638f81" })
         vim.api.nvim_set_hl(0, "NeoTreeStatusLine", { fg = "#5f8787", bg = nil })
       end,
     })
