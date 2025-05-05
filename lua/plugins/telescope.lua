@@ -19,18 +19,24 @@ local config = function()
         theme = "dropdown",
         previewer = false,
       },
-      buffers = { -- Note: Changed from find_buffers to buffers
+      buffers = {
         theme = "dropdown",
       },
-      previewer = false,
     },
   })
+  -- Load the emoji extension after setup
+  telescope.load_extension("emoji")
 end
+
 return {
   "nvim-telescope/telescope.nvim",
   tag = "0.1.8",
   lazy = false,
-  dependencies = { "nvim-lua/plenary.nvim" },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    -- Add telescope-emoji.nvim as a dependency
+    "xiyaowong/telescope-emoji.nvim",
+  },
   config = config,
   keys = {
     { "<leader>fk", ":Telescope keymaps<CR>", desc = "Telescope keymaps", noremap = true, silent = true },
@@ -39,5 +45,6 @@ return {
     { "<leader>fa", ":Telescope builtin<CR>", desc = "Telescope builtin", noremap = true, silent = true },
     { "<leader>fl", ":Telescope live_grep<CR>", desc = "Telescope live grep", noremap = true, silent = true },
     { "<leader>fb", ":Telescope buffers<CR>", desc = "Telescope buffers", noremap = true, silent = true },
+    { "<leader>fj", ":Telescope emoji<CR>", desc = "Telescope emoji", noremap = true, silent = true },
   },
 }

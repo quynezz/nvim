@@ -36,6 +36,7 @@ require("lazy").setup({
     { import = "plugins.lspsaga" },
     -- { import = "plugins.black-metal" },
     { import = "plugins.disable-lightbulb" },
+    { import = "plugins.indent-blankline" },
   },
   defaults = { lazy = false, version = false },
   install = {
