@@ -16,7 +16,7 @@ return {
       styles = {
         bold = true,
         italic = false,
-        transparency = false,
+        transparency = true,
       },
 
       groups = {
@@ -53,7 +53,7 @@ return {
       palette = {
         -- Override the builtin palette for the moon variant
         main = {
-          base = "#000000", -- Set background to pure black
+          base = "NONE", -- Set background to pure black
         },
       },
 
@@ -61,8 +61,10 @@ return {
       -- per group via `inherit = false`
 
       highlight_groups = {
-        NeoTreeNormal = { bg = "#000000" }, -- Ensure Neo-tree background is black
-        NeoTreeNormalNC = { bg = "#000000" }, -- Ensure non-active Neo-tree windows are black
+        NeoTreeNormal = { bg = nil }, -- Ensure Neo-tree background is black
+        NeoTreeNormalNC = { bg = nil }, -- Ensure non-active Neo-tree windows are black
+        CursorLineNr = { fg = "#5f8787", bg = "NONE", bold = false }, -- No bold, transparent background
+        Visual = { fg = "#FFFFFF", bg = "#FFFFFF22" }, -- White foreground, slightly transparent background for visual mode
       },
       before_highlight = function(group, highlight, palette)
         -- Disable all undercurls
