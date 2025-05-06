@@ -44,6 +44,7 @@ return {
         vim.api.nvim_set_hl(0, "NeoTreeNormal", { fg = "#FFFFFF", bg = "NONE" })
         vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = "#E5E5E5", bg = "NONE" })
         vim.api.nvim_set_hl(0, "NeoTreeStatusLine", { fg = "#5f8787", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
       end,
     })
   end,
