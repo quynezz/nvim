@@ -65,8 +65,8 @@ return {
           LineNr = { bg = "NONE" }, -- Line numbers
           CursorLine = { bg = "NONE" }, -- Cursor line
           CursorLineNr = { fg = "#5f8787", bg = "NONE", bold = false }, -- Cursor line number
-          Visual = { fg = "#FFFFFF", bg = "#FFFFFF22" }, -- Visual selection
           NeoTreeNormal = { bg = "NONE" }, -- Neo-tree main background
+          -- Visual = { fg = "#FFFFFF", bg = "#8B5CF622" }, -- Visual selection with white text and semi-transparent purple
           NeoTreeNormalNC = { bg = "NONE" }, -- Non-active Neo-tree windows
           NeoTreeFloatNormal = { bg = "NONE" }, -- Neo-tree floating windows
           NeoTreeTitleBar = { bg = "NONE" }, -- Neo-tree title bar
@@ -76,10 +76,10 @@ return {
         },
 
         before_highlight = function(group, highlight, palette)
-          -- Ensure Visual group isn't overridden by default theme
+          -- Ensure Visual group is applied
           if group == "Visual" then
             highlight.fg = "#FFFFFF"
-            highlight.bg = "#FFFFFF22"
+            highlight.bg = "#D4D4D4" -- Semi-transparent purple (iris-inspired)
           end
           -- Ensure background is always NONE for key groups
           if
@@ -99,8 +99,8 @@ return {
       vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#E5E5E5", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#FFFFFF", bg = "NONE" })
     end,
   },

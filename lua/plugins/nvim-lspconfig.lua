@@ -380,11 +380,10 @@ local config = function()
       client.server_capabilities.documentFormattingProvider = true
       client.server_capabilities.documentRangeFormattingProvider = true
       client.server_capabilities.diagnosticProvider = false -- Explicitly disable diagnostics in efm
-      vim.notify("EFM LSP attached for filetype: " .. vim.bo.filetype, vim.log.levels.INFO)
+      vim.notify("LSP attached filetype 🗄: " .. vim.bo.filetype, vim.log.levels.INFO)
     end,
   })
 end
-
 return {
   "neovim/nvim-lspconfig",
   config = config,

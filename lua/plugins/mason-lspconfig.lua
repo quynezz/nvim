@@ -13,7 +13,6 @@ local mason = {
         package_uninstalled = "✗",
       },
     },
-    -- log_level = vim.log.levels.DEBUG, -- Enable debug logging
   },
 }
 
