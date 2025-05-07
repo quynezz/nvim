@@ -13,7 +13,7 @@ local mason = {
         package_uninstalled = "✗",
       },
     },
-    log_level = vim.log.levels.DEBUG, -- Enable debug logging
+    -- log_level = vim.log.levels.DEBUG, -- Enable debug logging
   },
 }
 
@@ -27,7 +27,7 @@ local mason_lspconfig = {
       "solidity_ls",
       "efm",
       "bashls",
-      "tsserver",
+      "tsserver", -- Consider updating to "ts_ls" to match lspconfig
       "tailwindcss",
       "pyright",
       "lua_ls",
@@ -39,6 +39,7 @@ local mason_lspconfig = {
       "html",
       "cssls",
       "volar",
+      "intelephense", -- Replaced phpactor with intelephense
     },
     automatic_installation = true,
   },
@@ -67,6 +68,7 @@ local mason_tool_installer = {
       "solhint",
       "fixjson",
       "stylelint",
+      "php-cs-fixer", -- Kept for PHP formatting
     },
     auto_update = true,
     run_on_start = true,

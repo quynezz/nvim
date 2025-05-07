@@ -1,6 +1,11 @@
+-- ~/.config/nvim/lua/plugins/lspconfig.lua
+
 local on_attach = require("util.lsp").on_attach
 local typescript_organise_imports = require("util.lsp").typescript_organise_imports
 local config = function()
+  -- Set LSP log level to DEBUG for detailed logging
+  vim.lsp.set_log_level("DEBUG")
+
   require("neoconf").setup({})
   require("mason").setup()
   require("mason-lspconfig").setup({
@@ -18,6 +23,7 @@ local config = function()
       "dockerls",
       "clangd",
       "efm",
+      "intelephense",
     },
     automatic_installation = true,
   })
@@ -58,7 +64,7 @@ local config = function()
       format = function(diagnostic)
         return string.format("%s (%s)", diagnostic.message, diagnostic.code or "unknown")
       end,
-      severity = { min = vim.diagnostic.severity.ERROR }, -- Show only errors in float
+      severity = { min = vim.diagnostic.severity.ERROR },
     },
   })
 
@@ -139,6 +145,19 @@ local config = function()
           diagnosticMode = "workspace",
           autoImportCompletions = true,
         },
+      },
+    },
+  })
+
+  -- PHP with Intelephense
+  lspconfig.intelephense.setup({
+    filetypes = { "php" },
+    root_dir = function()
+      return vim.fn.getcwd()
+    end,
+    settings = {
+      intelephense = {
+        diagnostics = { enable = true, undefinedVariables = true },
       },
     },
   })
@@ -296,6 +315,7 @@ local config = function()
   local stylelint = require("efmls-configs.linters.stylelint")
   local cpplint = require("efmls-configs.linters.cpplint")
   local clangformat = require("efmls-configs.formatters.clang_format")
+  local php_cs_fixer = require("efmls-configs.formatters.php_cs_fixer")
 
   -- Configure EFM server
   lspconfig.efm.setup({
@@ -319,15 +339,16 @@ local config = function()
       "c",
       "cpp",
       "go",
+      "php",
     },
     root_dir = lspconfig.util.root_pattern(".git", "package.json", "tsconfig.json", "jsconfig.json") or vim.fn.getcwd(),
     init_options = {
       documentFormatting = true,
       documentRangeFormatting = true,
-      hover = true,
-      documentSymbol = true,
-      codeAction = true,
-      completion = true,
+      hover = false,
+      documentSymbol = false,
+      codeAction = false,
+      completion = false,
     },
     settings = {
       rootMarkers = { ".git/", "package.json", "tsconfig.json", "jsconfig.json" },
@@ -351,10 +372,14 @@ local config = function()
         c = { clangformat, cpplint },
         cpp = { clangformat, cpplint },
         go = { gofumpt, go_revive },
+        php = { php_cs_fixer },
       },
     },
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
+      client.server_capabilities.documentFormattingProvider = true
+      client.server_capabilities.documentRangeFormattingProvider = true
+      client.server_capabilities.diagnosticProvider = false -- Explicitly disable diagnostics in efm
       vim.notify("EFM LSP attached for filetype: " .. vim.bo.filetype, vim.log.levels.INFO)
     end,
   })
