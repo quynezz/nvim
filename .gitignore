@@ -2,9 +2,8 @@ tt.*
 .tests
 doc/tags
 debug
-repo
-foo*
-data_log
+.repro
+foo.*
+*.log
+data
 lazy-lock.json
-lazyvim.json
-stylua.toml
