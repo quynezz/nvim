@@ -1,5 +1,4 @@
 -- ~/.config/nvim/lua/plugins/lspconfig.lua
-
 local on_attach = require("util.lsp").on_attach
 local typescript_organise_imports = require("util.lsp").typescript_organise_imports
 local config = function()
@@ -21,7 +20,7 @@ local config = function()
       "cssls",
       "volar",
       "dockerls",
-      "clangd",
+      -- "clangd",
       "efm",
       "intelephense",
     },
@@ -287,16 +286,17 @@ local config = function()
     root_dir = lspconfig.util.root_pattern("Dockerfile", ".git"),
   })
 
-  -- C/C++
-  lspconfig.clangd.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    cmd = {
-      "clangd",
-      "--offset-encoding=utf-16",
-    },
-    root_dir = lspconfig.util.root_pattern("compile_commands.json", ".git"),
-  })
+  -- -- C/C++
+  -- lspconfig.clangd.setup({
+  --   capabilities = capabilities,
+  --   on_attach = on_attach,
+  --   cmd = {
+  --     "clangd",
+  --     "--offset-encoding=utf-16",
+  --   },
+  --   root_dir = lspconfig.util.root_pattern("compile_commands.json", ".git"),
+  -- })
+  --
 
   -- Set up EFM tools
   local gofumpt = require("efmls-configs.formatters.gofumpt")
@@ -305,16 +305,16 @@ local config = function()
   local prettier_d = require("efmls-configs.formatters.prettier_d")
   local luacheck = require("efmls-configs.linters.luacheck")
   local stylua = require("efmls-configs.formatters.stylua")
-  local flake8 = require("efmls-configs.linters.flake8")
-  local black = require("efmls-configs.formatters.black")
+  -- local flake8 = require("efmls-configs.linters.flake8")
+  -- local black = require("efmls-configs.formatters.black")
   local eslint_d = require("efmls-configs.linters.eslint_d")
   local fixjson = require("efmls-configs.formatters.fixjson")
   local shellcheck = require("efmls-configs.linters.shellcheck")
   local shfmt = require("efmls-configs.formatters.shfmt")
   local hadolint = require("efmls-configs.linters.hadolint")
   local stylelint = require("efmls-configs.linters.stylelint")
-  local cpplint = require("efmls-configs.linters.cpplint")
-  local clangformat = require("efmls-configs.formatters.clang_format")
+  -- local cpplint = require("efmls-configs.linters.cpplint")
+  -- local clangformat = require("efmls-configs.formatters.clang_format")
   local php_cs_fixer = require("efmls-configs.formatters.php_cs_fixer")
 
   -- Configure EFM server
@@ -369,8 +369,8 @@ local config = function()
         docker = { hadolint, prettier_d },
         html = { prettier_d },
         css = { stylelint, prettier_d },
-        c = { clangformat, cpplint },
-        cpp = { clangformat, cpplint },
+        -- c = { clangformat, cpplint },
+        -- cpp = { clangformat, cpplint },
         go = { gofumpt, go_revive },
         php = { php_cs_fixer },
       },
