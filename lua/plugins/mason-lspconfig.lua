@@ -60,7 +60,7 @@ local mason_tool_installer = {
       "shellcheck",
       "shfmt",
       "hadolint",
-      -- "cpplint",
+      "cpplint",
       -- "clang-format",
       "gofumpt",
       "go_revive",
