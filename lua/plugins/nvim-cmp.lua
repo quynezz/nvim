@@ -44,6 +44,8 @@ return {
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
+        { name = "render-markdown" },
+        { name = "ts_ls" },
       }),
       formatting = {
         format = lspkind.cmp_format({
