@@ -16,7 +16,7 @@ return {
           migrations = true, -- Handle deprecated options automatically
         },
         styles = {
-          bold = false, -- Disable bold globally to avoid bold cursor line number
+          bold = true, -- Enable bold globally (required for markdownBold to apply bold styling)
           italic = false,
           transparency = true, -- Enable transparency
         },
@@ -66,13 +66,13 @@ return {
           CursorLine = { bg = "NONE" }, -- Cursor line
           CursorLineNr = { fg = "#5f8787", bg = "NONE", bold = false }, -- Cursor line number
           NeoTreeNormal = { bg = "NONE" }, -- Neo-tree main background
-          -- Visual = { fg = "#FFFFFF", bg = "#8B5CF622" }, -- Visual selection with white text and semi-transparent purple
           NeoTreeNormalNC = { bg = "NONE" }, -- Non-active Neo-tree windows
           NeoTreeFloatNormal = { bg = "NONE" }, -- Neo-tree floating windows
           NeoTreeTitleBar = { bg = "NONE" }, -- Neo-tree title bar
           NeoTreeStatusLine = { bg = "NONE" }, -- Neo-tree status line
           NeoTreeDirectoryName = { fg = "#E5E5E5", bg = "NONE" }, -- Directory names
           NeoTreeFileName = { fg = "#FFFFFF", bg = "NONE" }, -- File names
+          markdownBold = { fg = "#FFFFFF", bold = true }, -- Bold text in Markdown
         },
 
         before_highlight = function(group, highlight, palette)
@@ -89,6 +89,7 @@ return {
             or group == "NeoTreeNormal"
             or group == "NeoTreeDirectoryName"
             or group == "NeoTreeFileName"
+            or group == "markdownBold" -- Add markdownBold to ensure no background
           then
             highlight.bg = "NONE"
           end
@@ -102,6 +103,7 @@ return {
       vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#E5E5E5", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#FFFFFF", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "markdownBold", { fg = "#FFFFFF", bg = "NONE", bold = true }) -- Enforce markdownBold color
     end,
   },
 }

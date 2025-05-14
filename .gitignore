@@ -1,0 +1,19 @@
+# Files from the image
+.luacheckrc
+.luarc.json
+.neoconf.json
+.swp
+lazy-lock.json
+lazyvim.json
+stylua.toml
+
+# Patterns you provided
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+.luacheck
