@@ -16,10 +16,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.opt.scrolloff = 0
-vim.opt.sidescrolloff = 0
--- vim.g.lazyvim_colorscheme = "catppuccin" -- Use the correct colorscheme name
-
 require("lazy").setup({
   spec = {
     {
