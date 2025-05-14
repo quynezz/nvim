@@ -8,3 +8,4 @@
 
 -- Removing the trailing space "--"
 vim.opt.list = false
+vim.g.snacks_animate = false
