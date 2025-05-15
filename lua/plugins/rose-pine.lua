@@ -70,7 +70,8 @@ return {
           NeoTreeTitleBar = { bg = "NONE" }, -- Neo-tree title bar
           NeoTreeStatusLine = { bg = "NONE" }, -- Neo-tree status line
           NeoTreeDirectoryName = { fg = "#E5E5E5", bg = "NONE" }, -- Directory names
-          NeoTreeFileName = { fg = "#FFFFFF", bg = "NONE" }, -- File names
+          NeoTreeFileName = { fg = "#FFFFFF", bg = "NONE" }, -- File names (default)
+          NeoTreeCursorLine = { bg = "NONE" }, -- Ensure cursor line background is transparent
           markdownBold = { fg = "#FFFFFF", bold = true }, -- Bold text in Markdown
         },
 
@@ -88,9 +89,17 @@ return {
             or group == "NeoTreeNormal"
             or group == "NeoTreeDirectoryName"
             or group == "NeoTreeFileName"
-            or group == "markdownBold" -- Add markdownBold to ensure no background
+            or group == "NeoTreeCursorLine"
+            or group == "markdownBold"
           then
             highlight.bg = "NONE"
+          end
+          -- Use gold for NeoTreeFileName when on the cursor line
+          if group == "NeoTreeFileName" and vim.fn.hlexists("NeoTreeCursorLine") == 1 then
+            local cursor_line = vim.api.nvim_get_hl_by_name("NeoTreeCursorLine", true)
+            if cursor_line and vim.fn.line(".") == vim.fn.line("v") then
+              highlight.fg = palette.gold -- Use rose-pine gold color
+            end
           end
         end,
       })
@@ -102,7 +111,8 @@ return {
       vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#E5E5E5", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#FFFFFF", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "markdownBold", { fg = "#FFFFFF", bg = "NONE", bold = true }) -- Enforce markdownBold color
+      vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = "NONE" })
+      vim.api.nvim_set_hl(0, "markdownBold", { fg = "#FFFFFF", bg = "NONE", bold = true })
     end,
   },
 }
