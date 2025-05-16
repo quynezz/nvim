@@ -9,15 +9,15 @@ return {
           vim.opt_local.relativenumber = true
           -- Enable cursorline to highlight the current line number
           vim.opt_local.cursorline = true
-          vim.opt_local.cursorlineopt = "number"
+          vim.opt_local.cursorlineopt = "both"
         end,
       },
       -- {
       --   event = "neo_tree_buffer_leave",
       --   handler = function()
       --     -- Disable cursorline when leaving the Neo-tree buffer
-      --     vim.opt_local.cursorline = false
       --   end,
+      --     vim.opt_local.cursorline = false
       -- },
     },
   },
