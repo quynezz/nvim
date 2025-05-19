@@ -21,14 +21,12 @@ require("lazy").setup({
     {
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
-      opts = {
-        -- colorscheme = { "catppuccin" }, -- Correct colorscheme name
-      },
+      opts = {},
     },
     { "goolord/alpha-nvim", enabled = false },
     { import = "plugins" },
     -- Disable catppuccin to avoid conflicts
-    -- { import = "plugins.catppuccin" },
+    { import = "plugins.rose-pine" },
     { import = "plugins.lspsaga" },
     -- { import = "plugins.black-metal" },
     { import = "plugins.disable-lightbulb" },
@@ -36,7 +34,7 @@ require("lazy").setup({
   },
   defaults = { lazy = false, version = false },
   install = {
-    -- colorscheme = { "catppuccin" }, -- Ensure LazyVim tries this during installation
+    -- colorscheme = { "rose-pine" }, -- Ensure LazyVim tries this during installation
   },
   checker = { enabled = true, notify = false },
   performance = {
