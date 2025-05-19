@@ -1,6 +1,9 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   opts = {
+    window = {
+      position = "right",
+    },
     event_handlers = {
       {
         event = "neo_tree_buffer_enter",
@@ -12,6 +15,7 @@ return {
           vim.opt_local.cursorlineopt = "both"
         end,
       },
+
       -- {
       --   event = "neo_tree_buffer_leave",
       --   handler = function()
