@@ -11,7 +11,7 @@ return {
         extend_background_behind_borders = true,
 
         enable = {
-          terminal = true,
+          terminal = false,
           legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
           migrations = true, -- Handle deprecated options automatically
         },
@@ -108,10 +108,10 @@ return {
       vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#E5E5E5", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#FFFFFF", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = "NONE" })
+      vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#E5E5E5", bg = "NONE" })
       vim.api.nvim_set_hl(0, "markdownBold", { fg = "#FFFFFF", bg = "NONE", bold = true })
     end,
   },
