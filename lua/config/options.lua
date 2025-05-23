@@ -5,7 +5,12 @@
 --
 --
 -- In ~/.config/nvim/lua/config/options.lua or a similar file
-
+--
 -- Removing the trailing space "--"
 vim.opt.list = false
 vim.g.snacks_animate = false
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
