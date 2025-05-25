@@ -22,14 +22,36 @@ vim.api.nvim_set_keymap("v", "<C-_>", "gcc", { noremap = false })
 
 -- Define :FormatCode command
 vim.api.nvim_create_user_command("FormatCode", function()
-  vim.cmd("normal! gggqG``") -- Execute gggqG`` in normal mode
+  -- Save cursor position
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  -- Set indentation settings explicitly
+  vim.opt.tabstop = 4
+  vim.opt.shiftwidth = 4
+  vim.opt.expandtab = true
+  -- Format the entire file
+  vim.cmd("normal! gg=G") -- Use = to reindent based on filetype
+  -- Remove trailing whitespace
+  vim.cmd([[%s/\s\+$//e]])
+  -- Restore cursor position
+  vim.api.nvim_win_set_cursor(0, cursor)
   vim.notify("Done Formatting!")
-end, { desc = "Format entire file and return cursor to previous position" })
+end, { desc = "Format entire file with 4-space indentation and return cursor to previous position" })
 
--- Remove trailing whitespace on save
+-- Remove trailing whitespace and enforce 4-space indentation on save
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
+    -- Save cursor position
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    -- Ensure 4-space indentation
+    vim.opt.tabstop = 4
+    vim.opt.shiftwidth = 4
+    vim.opt.expandtab = true
+    -- Reindent the file
+    vim.cmd("normal! gg=G")
+    -- Remove trailing whitespace
     vim.cmd([[%s/\s\+$//e]])
+    -- Restore cursor position
+    vim.api.nvim_win_set_cursor(0, cursor)
   end,
 })
