@@ -3,7 +3,7 @@ local on_attach = require("util.lsp").on_attach
 local typescript_organise_imports = require("util.lsp").typescript_organise_imports
 local config = function()
   -- Set LSP log level to DEBUG for detailed logging
-  vim.lsp.set_log_level("DEBUG")
+  vim.lsp.set_log_level("INFO")
 
   require("neoconf").setup({})
   require("mason").setup()
