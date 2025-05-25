@@ -14,3 +14,5 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+-- Change all the cursor line (visual, insert and normal) into "block"
+vim.opt.guicursor = "n-v-c-i-ci-ve-r-cr-o:block"
