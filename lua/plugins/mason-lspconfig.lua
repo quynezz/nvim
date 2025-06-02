@@ -1,4 +1,3 @@
--- ~/.config/nvim/lua/plugins/mason-lspconfig.lua
 local mason = {
   "williamboman/mason.nvim",
   cmd = "Mason",
@@ -35,7 +34,8 @@ local mason_lspconfig = {
       "cssls",
       "volar",
       "intelephense",
-      "sqls", -- Add sqls here
+      "sqls",
+      "clangd", -- Added for C++ support
     },
     automatic_installation = true,
   },

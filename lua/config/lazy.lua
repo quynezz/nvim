@@ -25,17 +25,13 @@ require("lazy").setup({
     },
     { "goolord/alpha-nvim", enabled = false },
     { import = "plugins" },
-    -- Disable catppuccin to avoid conflicts
     { import = "plugins.rose-pine" },
     { import = "plugins.lspsaga" },
-    -- { import = "plugins.black-metal" },
     { import = "plugins.disable-lightbulb" },
     { import = "plugins.indent-blankline" },
   },
   defaults = { lazy = false, version = false },
-  install = {
-    -- colorscheme = { "rose-pine" }, -- Ensure LazyVim tries this during installation
-  },
+  install = {},
   checker = { enabled = true, notify = false },
   performance = {
     rtp = {
