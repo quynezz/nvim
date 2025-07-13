@@ -9,7 +9,7 @@ return {
           -- section = "header",
           -- vim.notify(`${section = "header"}`)
         },
-        { section = "startup", gap = 1 }, -- Show plugin load stats
+        -- { section = "startup", gap = 1 }, -- Show plugin load stats
         {
           text = {
             -- { "Welcome Quynezz!", align = "center", hl = "SnacksDashboardDesc" },

@@ -15,39 +15,31 @@ return {
                     vim.opt_local.cursorlineopt = "both"
                 end,
             },
-
-            -- {
-            --   event = "neo_tree_buffer_leave",
-            --   handler = function()
-            --     -- Disable cursorline when leaving the Neo-tree buffer
-            --   end,
-            --     vim.opt_local.cursorline = false
-            -- },
         },
     },
     init = function()
         -- Set initial highlights
-        vim.api.nvim_set_hl(0, "LineNr", { fg = "#C1C0C0", bg = "NONE" })
-        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#5f8787", bg = "NONE", bold = false })
-        vim.api.nvim_set_hl(0, "CursorLine", { bg = "NONE" }) -- Subtle gray for cursorline background
-        vim.api.nvim_set_hl(0, "NeoTreePrompt", { fg = "#FFFFFF", bg = "NONE" })
-        vim.api.nvim_set_hl(0, "NeoTreeFloatNormal", { fg = "#FFFFFF", bg = "NONE" })
-        vim.api.nvim_set_hl(0, "NeoTreeNormal", { fg = "#FFFFFF", bg = "NONE" })
-        vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = "#E5E5E5", bg = "NONE" })
-        vim.api.nvim_set_hl(0, "NeoTreeStatusLine", { fg = "#5f8787", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "LineNr", { fg = "#808080", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#FFFFFF", bg = "NONE", bold = true })
+        vim.api.nvim_set_hl(0, "CursorLine", { bg = "NONE", bold = true }) -- Set cursor line to bold
+        vim.api.nvim_set_hl(0, "NeoTreePrompt", { fg = "#FFFFFF", bg = "#1C2526" }) -- Non-transparent background
+        vim.api.nvim_set_hl(0, "NeoTreeFloatNormal", { fg = "#FFFFFF", bg = "#1C2526" })
+        vim.api.nvim_set_hl(0, "NeoTreeNormal", { fg = "#FFFFFF", bg = "#1C2526" }) -- Non-transparent background
+        vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = "#E5E5E5", bg = "#1C2526" })
+        vim.api.nvim_set_hl(0, "NeoTreeStatusLine", { fg = "#FFD700", bg = "#1C2526" })
 
         -- Ensure highlights persist after colorscheme changes
         vim.api.nvim_create_autocmd("ColorScheme", {
             pattern = "*",
             callback = function()
-                vim.api.nvim_set_hl(0, "LineNr", { fg = "#C1C0C0", bg = "NONE" })
-                vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#5f8787", bg = "NONE", bold = false })
-                vim.api.nvim_set_hl(0, "CursorLine", { bg = "NONE" }) -- Subtle gray for cursorline background
-                vim.api.nvim_set_hl(0, "NeoTreePrompt", { fg = "#FFFFFF", bg = "NONE" })
-                vim.api.nvim_set_hl(0, "NeoTreeFloatNormal", { fg = "#FFFFFF", bg = "NONE" })
-                vim.api.nvim_set_hl(0, "NeoTreeNormal", { fg = "#FFFFFF", bg = "NONE" })
-                vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = "#E5E5E5", bg = "NONE" })
-                vim.api.nvim_set_hl(0, "NeoTreeStatusLine", { fg = "#5f8787", bg = "NONE" })
+                vim.api.nvim_set_hl(0, "LineNr", { fg = "#808080", bg = "NONE" })
+                vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#FFFFFF", bg = "NONE", bold = true })
+                vim.api.nvim_set_hl(0, "CursorLine", { bg = "NONE", bold = true }) -- Set cursor line to bold
+                vim.api.nvim_set_hl(0, "NeoTreePrompt", { fg = "#FFFFFF", bg = "#1C2526" })
+                vim.api.nvim_set_hl(0, "NeoTreeFloatNormal", { fg = "#FFFFFF", bg = "#1C2526" })
+                vim.api.nvim_set_hl(0, "NeoTreeNormal", { fg = "#FFFFFF", bg = "#1C2526" }) -- Non-transparent background
+                vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = "#E5E5E5", bg = "#1C2526" })
+                vim.api.nvim_set_hl(0, "NeoTreeStatusLine", { fg = "#FFD700", bg = "#1C2526" })
                 vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
             end,
         })

@@ -9,6 +9,8 @@ vim.opt.list = false
 vim.g.snacks_animate = false
 -- Disable the autoformatting
 vim.g.autoformat = false
+-- Disable Image Sixel
+vim.g.disable_sixel = true
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
